@@ -16,7 +16,7 @@ export class TranscoderService {
   constructor(private shared:SharedService,
               private http:HttpClient) {
     this.SERVER_URL = this.shared.getServerURL();
-    this.SEARCH = 'api/filter/all';
+    this.SEARCH = 'api/filter/search';
   }
 
   getFilters(filterSearch:FilterSearch): Observable<FilterList>{

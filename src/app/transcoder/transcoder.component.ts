@@ -42,14 +42,14 @@ export class TranscoderComponent implements OnInit{
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  searchModel: FilterSearch = {name: null, page: 1, pageSize: 5};
+  searchModel: FilterSearch = {field_name: null, page: 1, pageSize: 5};
 
 
-  // constructor(private filterService: TranscoderService) {
-    // this.filterService.getFilters(this.searchModel).subscribe(data => {
-    //   this.dataSource.data = data.filterList;
-    // });
-  // }
+  constructor(private transcoderService:TranscoderService) {
+    this.transcoderService.search(this.searchModel).subscribe(data => {
+      this.dataSource.data = data.filterList;
+    });
+  }
 
 
   ngOnInit(): void {
