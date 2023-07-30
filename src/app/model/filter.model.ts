@@ -1,5 +1,6 @@
 export interface FilterModel {
   position: number;
-  name : string;
-  description : string
+  field_name : string;
+  condition_operator : string
+  property_value : string
 }

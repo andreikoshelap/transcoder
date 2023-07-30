@@ -1,3 +1,26 @@
 .form-field {
   width: 200px;
 }
+
+.search-column-right{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.search-buttons{
+  display: flex;
+  justify-content: end;
+}
+.search-forms {
+  display: flex;
+  justify-content: left;
+}
+
+.search-columns {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+}
