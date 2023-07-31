@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    TranscoderComponent
+    TranscoderComponent,
   ],
   imports: [
     BrowserModule,
