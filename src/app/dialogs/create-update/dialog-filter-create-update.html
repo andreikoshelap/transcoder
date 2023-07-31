@@ -1,0 +1,38 @@
+<h2 mat-dialog-title *ngIf="!data">Filter Create</h2>
+<h2 mat-dialog-title *ngIf="data">Filter Update</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="changing-panel">
+      <mat-form-field>
+        <mat-label>Field name</mat-label>
+        <mat-select [(ngModel)]="selectedField">
+          <mat-option *ngFor="let item of fieldNames" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Type of condition</mat-label>
+        <mat-select [(ngModel)]="selectedCondition">
+          <mat-option *ngFor="let item of conditions" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Property value</mat-label>
+        <input matInput [(ngModel)]="filterForSave.propertyValue"/>
+      </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="createUpdateFilter()">
+    <mat-icon>save</mat-icon>
+    Save
+  </button>
+</mat-dialog-actions>

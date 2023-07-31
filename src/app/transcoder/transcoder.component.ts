@@ -1,4 +1,3 @@
-import { NgModule } from "@angular/core";
 import {Component, OnInit} from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
@@ -7,7 +6,10 @@ import {FilterSearch} from "../search/filter-search-model";
 import {TranscoderService} from "../services/transcoder.service";
 import {FieldService} from "../services/field.service";
 import {FieldModel} from "../model/field.model";
-import {Observable} from "rxjs";
+import {DialogFilterCreateUpdate} from "../dialogs/create-update/dialog-filter-create-update";
+import {ComponentType} from "@angular/cdk/overlay";
+import {MatDialog} from "@angular/material/dialog";
+
 
 @Component({
   selector: 'app-transcoder',
@@ -17,17 +19,9 @@ import {Observable} from "rxjs";
 
 export class TranscoderComponent implements OnInit {
 
-  fields:FieldModel[] =
-     [
-    {name: 'one-0'},
-    {name: 'two-1'},
-    {name: 'three-2'},
-    {name: 'four-1'},
-    {name: 'five-1'},
-  ];
-  cars:string[] ;
-
-  results: FieldModel[];
+  fields: FieldModel[];
+  conditions: string[];
+  filterSearch: FilterSearch;
 
   displayedColumns: string[] = ['select', 'position', 'field_name', 'condition_operator', 'property_value'];
 
@@ -60,22 +54,9 @@ export class TranscoderComponent implements OnInit {
 
   searchModel: FilterSearch = {field_name: null, page: 1, pageSize: 5};
 
-  // loadFields() {
-  //   this.fieldService.getFields()
-  //     .subscribe((data) => {
-  //       this.cars = data;
-  //     });
-  // }
-
-  doSearch() {
-    // this.results = this.fieldService.search();
-    this.fieldService.getTableFields().subscribe(data => {
-      this.results = data
-    });
-  }
-
   constructor(private transcoderService: TranscoderService,
-              private fieldService: FieldService) {
+              private fieldService: FieldService,
+              public dialog: MatDialog) {
     this.transcoderService.search(this.searchModel).subscribe(data => {
       this.dataSource.data = data.filterList;
     });
@@ -86,10 +67,37 @@ export class TranscoderComponent implements OnInit {
     this.fieldService.getTableFields()
       .subscribe( data => {
         console.log(data);
-      this.results = data;
+      this.fields = data;
+    });
+
+    this.fieldService.getConditions()
+      .subscribe( data => {
+        console.log(data);
+      this.conditions = data;
     });
 
   }
 
+  openDialog<T>(component: ComponentType<T>, dialogWidth: string | undefined, dialogData: FilterModel | undefined, afterCloseActions: Function): void {
+    const dialogRef = this.dialog.open(component, {
+      width: dialogWidth,
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        afterCloseActions();
+      }
+    });
+  }
 
+  onAddButtonClicked() {
+    this.openDialog(DialogFilterCreateUpdate, '920px', undefined, () => this.loadFilters());
+  }
+
+  loadFilters() {
+    // this.transcoderService.search(this.filterSearch)
+    //   .subscribe((data) => {
+    //     this.gridOptions.api?.setRowData(data.filterList);
+    //   });
+  }
 }
