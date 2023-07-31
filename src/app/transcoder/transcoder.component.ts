@@ -24,10 +24,10 @@ export class TranscoderComponent implements OnInit {
   conditions: string[];
   filterSearch: FilterSearch;
 
-  displayedColumns: string[] = ['select', 'position', 'id', 'field_name', 'condition_operator', 'property_value'];
+  displayedColumns: string[] = ['select', 'position', 'field_name', 'condition_operator', 'property_value'];
 
   dataSource = new MatTableDataSource<FilterModel>();
-  selection = new SelectionModel<FilterModel>(true, []);
+  selection = new SelectionModel<FilterModel>(false, []);
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
