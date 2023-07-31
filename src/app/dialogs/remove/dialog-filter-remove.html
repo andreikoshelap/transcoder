@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Delete Filter</h1>
 <div mat-dialog-content>
-  Would you like to delete Filter <label class="text-key-info">{{data.fieldName}}</label>?
+  Would you like to delete Filter <label class="filter-info">{{data.fieldName + ',' + data.conditionOperator}}</label>?
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" (click)="onNoClick()">

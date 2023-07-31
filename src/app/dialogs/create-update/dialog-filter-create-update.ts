@@ -5,6 +5,7 @@ import {FieldListModel} from "../../list/field-list-model";
 import {TranscoderService} from "../../services/transcoder.service";
 import {FieldService} from "../../services/field.service";
 import {FieldModel} from "../../model/field.model";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'dialog-filter-create-update',
@@ -17,8 +18,8 @@ export class DialogFilterCreateUpdate  implements OnInit{
   conditions: string[];
   fieldNames: FieldModel[];
 
-  selectedCondition: string | null;
-  selectedField: string | null;
+  selectedCondition: string;
+  selectedField: string;
 
 
   filterForSave: FilterModel = {
@@ -94,19 +95,12 @@ export class DialogFilterCreateUpdate  implements OnInit{
 
   createUpdateFilter(): void {
     this.isLoadingResults = true;
-    // this.textKeyForSave.additionalInfo = this.selectedAdditionalInfo;
-    // this.textKeyForSave.networkTypes = (this.networkTypesForm.value.selectedValues && this.networkTypesForm.value.selectedValues.length !== 0)
-    //   ? Array.from(this.networkTypesForm.value.selectedValues).join(',')
-    //   : null;
-    // this.textKeyForSave.documentTypes = (this.printedOnDocumentsForm.value.selectedValues && this.printedOnDocumentsForm.value.selectedValues.length !== 0)
-    //   ? Array.from(this.printedOnDocumentsForm.value.selectedValues).join(',')
-    //   : null;
-    // this.textKeyForSave.businessFunctions = (this.businessFunctionsForm.value.selectedValues && this.businessFunctionsForm.value.selectedValues.length !== 0)
-    //   ? Array.from(this.businessFunctionsForm.value.selectedValues).join(',')
-    //   : null;
+    this.filterForSave.fieldName = this.selectedField;
+    this.filterForSave.conditionOperator = this.selectedCondition;
+
     this.filterService.save(this.filterForSave).subscribe(data => {
+      console.log(data);
       this.isLoadingResults = false;
-      // this.showFlag('Success', 'Filter key: ' + data. + ' saved', 'success');
     });
   }
 

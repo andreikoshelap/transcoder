@@ -24,3 +24,9 @@
 table {
   width: 100%;
 }
+
+.table-buttons {
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
+}

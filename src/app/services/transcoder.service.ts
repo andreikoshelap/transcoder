@@ -4,20 +4,24 @@ import {Observable} from "rxjs";
 import {FilterSearch} from "../search/filter-search-model";
 import {FilterList} from "../list/filter-list-model";
 import {FilterModel} from "../model/filter.model";
+import {SharedService} from "./shared.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranscoderService {
 
+  private readonly SERVER_URL: string;
   private readonly SEARCH:string;
   private readonly REMOVE: string;
   private readonly SAVE: string;
 
-  constructor(private http:HttpClient) {
-    this.SEARCH = 'api/filter/search';
-    this.REMOVE = 'api/filter/{id}';
-    this.SAVE =  'api/filter/';
+  constructor(private shared: SharedService,
+              private http:HttpClient) {
+    this.SERVER_URL = this.shared.getServerURL();
+    this.SEARCH = this.SERVER_URL + '/filter/search';
+    this.REMOVE = this.SERVER_URL + '/filter/{id}';
+    this.SAVE = 'api/filter/save';
   }
 
   search(filterSearch: FilterSearch): Observable<FilterList> {

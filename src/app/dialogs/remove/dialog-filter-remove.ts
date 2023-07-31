@@ -15,7 +15,6 @@ export class DialogFilterRemove {
   constructor(public dialogRef: MatDialogRef<DialogFilterRemove>,
               @Inject(MAT_DIALOG_DATA) public data: FilterModel,
               private transcoderService: TranscoderService,
-              // private readonly flagService: FlagService
   ) {
   }
 
@@ -25,7 +24,7 @@ export class DialogFilterRemove {
 
   removeFilter(): void {
     this.isLoadingResults = true;
-    this.transcoderService.remove(this.data.position).subscribe(data => {
+    this.transcoderService.remove(this.data.id).subscribe(data => {
       this.isLoadingResults = false;
     });
   }

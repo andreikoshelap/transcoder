@@ -1,55 +1,10 @@
-<div class="transcoder-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>New filter</mat-card-title>
-      <mat-card-subtitle>Filter panel</mat-card-subtitle>
-      <form class="example-form">
-
-        <mat-form-field>
-          <mat-label>Field name</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let item of fields" [value]="item">
-              {{item}}
-            </mat-option>
-          </mat-select>
-          <mat-hint align="end">Name of table fields</mat-hint>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Select me</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let item of conditions" [value]="item">
-              {{item}}
-            </mat-option>
-          </mat-select>
-          <mat-hint align="end">Types of compare</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Filter value</mat-label>
-          <input matInput>
-        </mat-form-field>
-
-      </form>
-    </mat-card-header>
-    <mat-card-actions>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-<br>
-
 <div class="table">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>List</mat-card-title>
+      <mat-card-title>List of Filters</mat-card-title>
     </mat-card-header>
     <div class="example-container">
-      <div class="add-button">
-        <button mat-raised-button color="primary" (click)="onAddButtonClicked()">
-          <mat-icon>add</mat-icon>
-          Add new Text Key
-        </button>
-      </div>
+
 
       <mat-card-actions align="end">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -100,6 +55,20 @@
           </tr>
         </table>
       </mat-card-actions>
+    </div>
+    <div class="table-buttons">
+      <button mat-raised-button color="primary" (click)="onAddButtonClicked()">
+        <mat-icon>add_circle</mat-icon>
+        New
+      </button>
+      <button mat-raised-button [disabled]="selection.selected.length === 0" (click)="onAddButtonClicked()">
+        <mat-icon>settings</mat-icon>
+        Details
+      </button>
+      <button mat-raised-button color="warn" [disabled]="selection.selected.length === 0" (click)="onDeleteButtonClicked()">
+        <mat-icon>cancel</mat-icon>
+        Delete
+      </button>
     </div>
   </mat-card>
 </div>

@@ -9,6 +9,7 @@ import {FieldModel} from "../model/field.model";
 import {DialogFilterCreateUpdate} from "../dialogs/create-update/dialog-filter-create-update";
 import {ComponentType} from "@angular/cdk/overlay";
 import {MatDialog} from "@angular/material/dialog";
+import {DialogFilterRemove} from "../dialogs/remove/dialog-filter-remove";
 
 
 @Component({
@@ -95,9 +96,12 @@ export class TranscoderComponent implements OnInit {
   }
 
   loadFilters() {
-    // this.transcoderService.search(this.filterSearch)
-    //   .subscribe((data) => {
-    //     this.gridOptions.api?.setRowData(data.filterList);
-    //   });
+    this.transcoderService.search(this.searchModel).subscribe(data => {
+      this.dataSource.data = data.filterList;
+    });
+  }
+
+  onDeleteButtonClicked() {
+    this.openDialog(DialogFilterRemove, '920px', undefined, () => this.loadFilters());
   }
 }
