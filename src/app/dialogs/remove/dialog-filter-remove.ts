@@ -14,8 +14,7 @@ export class DialogFilterRemove {
 
   constructor(public dialogRef: MatDialogRef<DialogFilterRemove>,
               @Inject(MAT_DIALOG_DATA) public data: FilterModel,
-              private transcoderService: TranscoderService,
-  ) {
+              private transcoderService: TranscoderService  ) {
   }
 
   onNoClick(): void {

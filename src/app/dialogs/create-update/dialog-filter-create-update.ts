@@ -20,6 +20,7 @@ export class DialogFilterCreateUpdate  implements OnInit{
 
   selectedCondition: string;
   selectedField: string;
+  selectedValue: string;
 
 
   filterForSave: FilterModel = {
@@ -35,20 +36,16 @@ export class DialogFilterCreateUpdate  implements OnInit{
   ) {
     if (data) {
       this.filterForSave = data;
-      // this.selectedAdditionalInfo = data.additionalInfo;
-      // if (data && data.businessFunctions) {
-      //   this.businessFunctionsForm.setValue({currentValue: '', selectedValues: new Set(String(data.businessFunctions).split(','))});
-      // }
-      // if (data && data.networkTypes) {
-      //   this.networkTypesForm.setValue({currentValue: '', selectedValues: new Set(String(data.networkTypes).split(','))});
-      // }
-      // if (data && data.documentTypes) {
-      //   this.printedOnDocumentsForm.setValue({currentValue: '', selectedValues: new Set(String(data.documentTypes).split(','))});
-      // }
+      this.selectedValue = data.propertyValue;
+      if (data && data.fieldName) {
+        this.selectedField = data.fieldName;
+      }
+      if (data && data.conditionOperator) {
+        this.selectedCondition = data.conditionOperator;
+      }
+
     }
-    // if(list) {
-    //   this.networkTypeList = string[](list.code);
-    // }
+
   }
 
   // filteredProposalsNetworkType(): string[] {

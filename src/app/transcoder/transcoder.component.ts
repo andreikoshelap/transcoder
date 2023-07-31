@@ -24,7 +24,7 @@ export class TranscoderComponent implements OnInit {
   conditions: string[];
   filterSearch: FilterSearch;
 
-  displayedColumns: string[] = ['select', 'position', 'field_name', 'condition_operator', 'property_value'];
+  displayedColumns: string[] = ['select', 'position', 'id', 'field_name', 'condition_operator', 'property_value'];
 
   dataSource = new MatTableDataSource<FilterModel>();
   selection = new SelectionModel<FilterModel>(true, []);
@@ -101,7 +101,22 @@ export class TranscoderComponent implements OnInit {
     });
   }
 
-  onDeleteButtonClicked() {
-    this.openDialog(DialogFilterRemove, '920px', undefined, () => this.loadFilters());
+
+  onDeleteButtonClicked(selected: FilterModel[]) {
+    this.openDialog(DialogFilterRemove, '920px', selected[0], () => this.loadFilters());
+  }
+
+  onUpdateButtonClicked(selected: FilterModel[]) {
+    const dialogRef = this.dialog.open(DialogFilterCreateUpdate, {
+      data: selected[0]
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data = [];
+        this.loadFilters();
+      }
+    });
+
   }
 }

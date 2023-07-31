@@ -16,6 +16,7 @@ import {DialogFilterCreateUpdate} from "./dialogs/create-update/dialog-filter-cr
 import {MatDialogModule} from "@angular/material/dialog";
 import {DialogFilterRemove} from "./dialogs/remove/dialog-filter-remove";
 import { FormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -25,21 +26,22 @@ import { FormsModule } from '@angular/forms';
     DialogFilterCreateUpdate,
     DialogFilterRemove
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatInputModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    HttpClientModule,
-    MatDialogModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatInputModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        HttpClientModule,
+        MatDialogModule,
+        FormsModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
