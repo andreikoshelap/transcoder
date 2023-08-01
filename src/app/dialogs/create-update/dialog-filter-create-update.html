@@ -9,8 +9,8 @@
       <mat-form-field>
         <mat-label>Field name</mat-label>
         <mat-select [(ngModel)]="selectedField">
-          <mat-option *ngFor="let item of fieldNames" [value]="item">
-            {{item}}
+          <mat-option *ngFor="let item of fieldNames" [value]="item.fieldName">
+            {{item.fieldName}}
           </mat-option>
         </mat-select>
       </mat-form-field>

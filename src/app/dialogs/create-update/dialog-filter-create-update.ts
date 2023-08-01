@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CriteriaModel} from "../../model/criteriaModel";
-import {FieldListModel} from "../../list/field-list-model";
+import {CriteriaModel} from "../../model/criteria.model";
 import {TranscoderService} from "../../services/transcoder.service";
 import {FieldService} from "../../services/field.service";
 import {FieldModel} from "../../model/field.model";
+import {FilterModel} from "../../model/filter.model";
+
 
 @Component({
   selector: 'dialog-filter-create-update',
@@ -15,21 +16,24 @@ export class DialogFilterCreateUpdate  implements OnInit{
 
   isLoadingResults = false;
   conditions: string[];
+  names: string[];
   fieldNames: FieldModel[];
 
   selectedCondition: string;
   selectedField: string;
   selectedValue: string;
-  selectedFilter: number = 1;
+  selectedFilter: FilterModel;
 
 
   filterForSave: CriteriaModel = {
-     id: 0, fieldName: '', conditionOperator: '', propertyValue: '', filter: 1
+    id: 0, fieldName: '', conditionOperator: '', propertyValue: '', filter: {
+      id: 1,
+      filterName: ''
+    }
   }
 
   constructor(public dialogRef: MatDialogRef<DialogFilterCreateUpdate>,
               @Inject(MAT_DIALOG_DATA) public data: CriteriaModel,
-              @Inject(MAT_DIALOG_DATA) public list: FieldListModel,
               private filterService: TranscoderService,
               private fieldService: FieldService,
   ) {
@@ -54,6 +58,7 @@ export class DialogFilterCreateUpdate  implements OnInit{
     this.filterForSave.conditionOperator = this.selectedCondition;
     this.filterForSave.filter = this.selectedFilter;
 
+    console.log(" Filter info " + this.filterForSave.fieldName);
     this.filterService.save(this.filterForSave).subscribe(data => {
       console.log(data);
       this.isLoadingResults = false;
@@ -63,7 +68,6 @@ export class DialogFilterCreateUpdate  implements OnInit{
   ngOnInit(): void {
     this.fieldService.getTableFields()
       .subscribe( data => {
-        console.log(data);
         this.fieldNames = data;
       });
 

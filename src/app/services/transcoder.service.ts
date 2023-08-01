@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FilterSearch} from "../search/filter-search-model";
 import {FilterList} from "../list/filter-list-model";
-import {CriteriaModel} from "../model/criteriaModel";
+import {CriteriaModel} from "../model/criteria.model";
 import {SharedService} from "./shared.service";
 
 @Injectable({

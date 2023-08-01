@@ -1,4 +1,4 @@
-import {CriteriaModel} from "../model/criteriaModel";
+import {CriteriaModel} from "../model/criteria.model";
 
 export interface FilterList {
   filterList: CriteriaModel[];

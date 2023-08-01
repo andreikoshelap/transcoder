@@ -1,6 +1,6 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CriteriaModel} from "../../model/criteriaModel";
+import {CriteriaModel} from "../../model/criteria.model";
 import {TranscoderService} from "../../services/transcoder.service";
 
 @Component({

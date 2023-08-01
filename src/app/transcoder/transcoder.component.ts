@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
-import {CriteriaModel} from "../model/criteriaModel";
+import {CriteriaModel} from "../model/criteria.model";
 import {FilterSearch} from "../search/filter-search-model";
 import {TranscoderService} from "../services/transcoder.service";
 import {FieldService} from "../services/field.service";
@@ -10,6 +10,7 @@ import {DialogFilterCreateUpdate} from "../dialogs/create-update/dialog-filter-c
 import {ComponentType} from "@angular/cdk/overlay";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogFilterRemove} from "../dialogs/remove/dialog-filter-remove";
+import {FilterModel} from "../model/filter.model";
 
 
 @Component({
@@ -23,6 +24,7 @@ export class TranscoderComponent implements OnInit {
   fields: FieldModel[];
   conditions: string[];
   filterSearch: FilterSearch;
+  selectedFilter: FilterModel;
 
   displayedColumns: string[] = ['select', 'field_name', 'condition_operator', 'property_value'];
 
@@ -61,22 +63,26 @@ export class TranscoderComponent implements OnInit {
     this.transcoderService.search(this.searchModel).subscribe(data => {
       this.dataSource.data = data.filterList;
     });
+    this.selectedFilter = {
+      id: 1,
+      filterName: ''
+    };
   }
 
 
   ngOnInit(): void {
-    this.fieldService.getTableFields()
-      .subscribe( data => {
-        console.log(data);
-      this.fields = data;
-    });
-
-    this.fieldService.getConditions()
-      .subscribe( data => {
-        console.log(data);
-      this.conditions = data;
-    });
-    this.loadFilters();
+    // this.fieldService.getTableFields()
+    //   .subscribe( data => {
+    //     console.log(data);
+    //   this.fields = data;
+    // });
+    //
+    // this.fieldService.getConditions()
+    //   .subscribe( data => {
+    //     console.log(data);
+    //   this.conditions = data;
+    // });
+    // this.loadFilters();
   }
 
   openDialog<T>(component: ComponentType<T>, dialogWidth: string | undefined, dialogData: CriteriaModel | undefined, afterCloseActions: Function): void {

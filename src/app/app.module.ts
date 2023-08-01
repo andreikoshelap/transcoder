@@ -17,6 +17,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogFilterRemove} from "./dialogs/remove/dialog-filter-remove";
 import { FormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         HttpClientModule,
         MatDialogModule,
         FormsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDatepickerModule
     ],
   providers: [],
   bootstrap: [AppComponent]

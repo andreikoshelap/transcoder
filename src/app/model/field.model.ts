@@ -1,3 +1,4 @@
 export interface FieldModel {
-  name: string;
+  fieldName: string;
+  fieldType: string;
 }
