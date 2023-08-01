@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FilterSearch} from "../search/filter-search-model";
 import {FilterList} from "../list/filter-list-model";
-import {FilterModel} from "../model/filter.model";
+import {CriteriaModel} from "../model/criteriaModel";
 import {SharedService} from "./shared.service";
 
 @Injectable({
@@ -34,7 +34,7 @@ export class TranscoderService {
     return this.http.delete<Observable<Object>>(url);
   }
 
-  save(filter: FilterModel): Observable<FilterModel> {
-    return this.http.post<FilterModel>(this.SAVE, filter);
+  save(filter: CriteriaModel): Observable<CriteriaModel> {
+    return this.http.post<CriteriaModel>(this.SAVE, filter);
   }
 }

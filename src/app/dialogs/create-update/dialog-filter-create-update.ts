@@ -1,11 +1,10 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FilterModel} from "../../model/filter.model";
+import {CriteriaModel} from "../../model/criteriaModel";
 import {FieldListModel} from "../../list/field-list-model";
 import {TranscoderService} from "../../services/transcoder.service";
 import {FieldService} from "../../services/field.service";
 import {FieldModel} from "../../model/field.model";
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'dialog-filter-create-update',
@@ -21,14 +20,15 @@ export class DialogFilterCreateUpdate  implements OnInit{
   selectedCondition: string;
   selectedField: string;
   selectedValue: string;
+  selectedFilter: number = 1;
 
 
-  filterForSave: FilterModel = {
-     id: 0, fieldName: '', conditionOperator: '', propertyValue: ''
+  filterForSave: CriteriaModel = {
+     id: 0, fieldName: '', conditionOperator: '', propertyValue: '', filter: 1
   }
 
   constructor(public dialogRef: MatDialogRef<DialogFilterCreateUpdate>,
-              @Inject(MAT_DIALOG_DATA) public data: FilterModel,
+              @Inject(MAT_DIALOG_DATA) public data: CriteriaModel,
               @Inject(MAT_DIALOG_DATA) public list: FieldListModel,
               private filterService: TranscoderService,
               private fieldService: FieldService,
@@ -36,63 +36,23 @@ export class DialogFilterCreateUpdate  implements OnInit{
     if (data) {
       this.filterForSave = data;
       this.selectedValue = data.propertyValue;
+      this.selectedFilter = data.filter;
+      console.log(data);
+
       if (data && data.fieldName) {
         this.selectedField = data.fieldName;
       }
       if (data && data.conditionOperator) {
         this.selectedCondition = data.conditionOperator;
       }
-
     }
-
   }
-
-  // filteredProposalsNetworkType(): string[] {
-  //   return this.networkTypeList;
-  // }
-  //
-  // filteredSelectionForAutoCompleteNetworkType(): string[] {
-  //   return this.selectedNetworkTypes;
-  // }
-  //
-  // networkTypeClear() {
-  //   if (this.networkTypesForm.value.selectedValues) {
-  //     this.networkTypesForm.value.selectedValues.clear();
-  //   }
-  // }
-  //
-  // filteredProposalsDocuments(): string[] {
-  //   return this.printedOnDocumentsList;
-  // }
-  //
-  // filteredSelectionForAutoCompleteDocuments(): string[] {
-  //   return this.selectedDocumentTypes;
-  // }
-  //
-  // printedDocumentsClear() {
-  //   if (this.printedOnDocumentsForm.value.selectedValues) {
-  //     this.printedOnDocumentsForm.value.selectedValues.clear();
-  //   }
-  // }
-  //
-  // filteredProposalsBusinessFunctions(): string[] {
-  //   return this.businessFunctionsList;
-  // }
-  //
-  // filteredSelectionForAutoCompleteBusinessFunctions(): string[] {
-  //   return this.selectedBusinessFunctions;
-  // }
-  //
-  // businessFunctionsClear() {
-  //   if (this.businessFunctionsForm.value.selectedValues) {
-  //     this.businessFunctionsForm.value.selectedValues.clear();
-  //   }
-  // }
 
   createUpdateFilter(): void {
     this.isLoadingResults = true;
     this.filterForSave.fieldName = this.selectedField;
     this.filterForSave.conditionOperator = this.selectedCondition;
+    this.filterForSave.filter = this.selectedFilter;
 
     this.filterService.save(this.filterForSave).subscribe(data => {
       console.log(data);

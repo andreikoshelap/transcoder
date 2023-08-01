@@ -1,5 +1,5 @@
-import {FilterModel} from "../model/filter.model";
+import {CriteriaModel} from "../model/criteriaModel";
 
 export interface FilterList {
-  filterList: FilterModel[];
+  filterList: CriteriaModel[];
 }

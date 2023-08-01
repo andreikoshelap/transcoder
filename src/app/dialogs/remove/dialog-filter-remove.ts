@@ -1,6 +1,6 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FilterModel} from "../../model/filter.model";
+import {CriteriaModel} from "../../model/criteriaModel";
 import {TranscoderService} from "../../services/transcoder.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class DialogFilterRemove {
   isLoadingResults = false;
 
   constructor(public dialogRef: MatDialogRef<DialogFilterRemove>,
-              @Inject(MAT_DIALOG_DATA) public data: FilterModel,
+              @Inject(MAT_DIALOG_DATA) public data: CriteriaModel,
               private transcoderService: TranscoderService  ) {
   }
 
