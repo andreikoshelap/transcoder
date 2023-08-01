@@ -1,5 +1,4 @@
 export interface FilterModel {
-  position: number;
   id: number;
   fieldName : string;
   conditionOperator : string

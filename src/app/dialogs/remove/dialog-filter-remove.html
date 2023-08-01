@@ -2,9 +2,9 @@
      *ngIf="isLoadingResults">
   <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 </div>
-<h1 mat-dialog-title>Delete Filter</h1>
+<h1 mat-dialog-title>Delete Criteria</h1>
 <div mat-dialog-content>
-  Would you like to delete Filter <label class="filter-info">{{data.fieldName + ',' + data.conditionOperator +  ',' + data.propertyValue}}</label>?
+  Would you like to delete Criteria <label class="filter-info">{{data.fieldName + ',' + data.conditionOperator +  ',' + data.propertyValue}}</label>?
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" (click)="onNoClick()">

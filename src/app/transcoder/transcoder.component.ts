@@ -24,7 +24,7 @@ export class TranscoderComponent implements OnInit {
   conditions: string[];
   filterSearch: FilterSearch;
 
-  displayedColumns: string[] = ['select', 'position', 'field_name', 'condition_operator', 'property_value'];
+  displayedColumns: string[] = ['select', 'field_name', 'condition_operator', 'property_value'];
 
   dataSource = new MatTableDataSource<FilterModel>();
   selection = new SelectionModel<FilterModel>(false, []);
@@ -50,7 +50,7 @@ export class TranscoderComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
   searchModel: FilterSearch = {field_name: null, page: 1, pageSize: 5};

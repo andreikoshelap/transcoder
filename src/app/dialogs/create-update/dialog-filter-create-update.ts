@@ -24,7 +24,7 @@ export class DialogFilterCreateUpdate  implements OnInit{
 
 
   filterForSave: FilterModel = {
-    position: 0, id: 0, fieldName: '', conditionOperator: '', propertyValue: ''
+     id: 0, fieldName: '', conditionOperator: '', propertyValue: ''
   }
 
   constructor(public dialogRef: MatDialogRef<DialogFilterCreateUpdate>,
@@ -32,7 +32,6 @@ export class DialogFilterCreateUpdate  implements OnInit{
               @Inject(MAT_DIALOG_DATA) public list: FieldListModel,
               private filterService: TranscoderService,
               private fieldService: FieldService,
-              // private readonly flagService: FlagService
   ) {
     if (data) {
       this.filterForSave = data;
